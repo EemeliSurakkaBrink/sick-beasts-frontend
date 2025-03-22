@@ -35,11 +35,11 @@ export default function HomePage() {
               {/* Hero image */}
               <div className="w-full h-full rounded-lg overflow-hidden relative">
                 <Image 
-                  src="/images/dummy-shirts/shirt-1.jpg" 
-                  alt="Sick Beasts T-Shirt" 
+                  src="/mr-coco/mr-coco.png" 
+                  alt="Mr Coco - Sick Beasts Mascot" 
                   fill 
                   priority
-                  className="object-cover"
+                  className="object-contain"
                 />
               </div>
             </div>
