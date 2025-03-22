@@ -7,7 +7,7 @@ import React, { createContext, useContext, useReducer, useEffect } from "react";
 
 // Define types
 export type CartItem = {
-  id: number;
+  id: string | number;
   name: string;
   price: number;
   size: string;
@@ -21,16 +21,16 @@ type CartState = {
 
 type CartAction =
   | { type: "ADD_ITEM"; payload: CartItem }
-  | { type: "REMOVE_ITEM"; payload: { id: number; size: string } }
-  | { type: "UPDATE_QUANTITY"; payload: { id: number; size: string; quantity: number } }
+  | { type: "REMOVE_ITEM"; payload: { id: string | number; size: string } }
+  | { type: "UPDATE_QUANTITY"; payload: { id: string | number; size: string; quantity: number } }
   | { type: "TOGGLE_CART" }
   | { type: "CLEAR_CART" };
 
 type CartContextType = {
   state: CartState;
   addItem: (item: CartItem) => void;
-  removeItem: (id: number, size: string) => void;
-  updateQuantity: (id: number, size: string, quantity: number) => void;
+  removeItem: (id: string | number, size: string) => void;
+  updateQuantity: (id: string | number, size: string, quantity: number) => void;
   toggleCart: () => void;
   clearCart: () => void;
   totalItems: number;
@@ -128,11 +128,11 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
     dispatch({ type: "ADD_ITEM", payload: item });
   };
 
-  const removeItem = (id: number, size: string) => {
+  const removeItem = (id: string | number, size: string) => {
     dispatch({ type: "REMOVE_ITEM", payload: { id, size } });
   };
 
-  const updateQuantity = (id: number, size: string, quantity: number) => {
+  const updateQuantity = (id: string | number, size: string, quantity: number) => {
     dispatch({ type: "UPDATE_QUANTITY", payload: { id, size, quantity } });
   };
 

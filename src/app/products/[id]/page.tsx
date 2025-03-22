@@ -4,51 +4,24 @@
 "use client";
 
 import Link from "next/link";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import MainLayout from "@/components/layout/main-layout";
 import { useCart } from "@/providers/cart-provider";
 import { useParams } from "next/navigation";
+import Image from "next/image";
+import { Product, getProductById } from "@/sanity/lib/api";
 
-// Mock product data (will be replaced with API fetching)
-const products = [
-  {
-    id: 1,
-    name: "Toxic Waste",
-    description: "Dark humor meets environmental awareness with this bold design. Made from 100% organic cotton and printed using eco-friendly water-based inks.",
-    price: 29.99,
-    sizes: ["S", "M", "L", "XL", "XXL"],
-    features: [
-      "100% organic cotton",
-      "Water-based eco-friendly inks",
-      "Print-on-demand to eliminate waste",
-      "Carbon-neutral shipping"
-    ]
-  },
-  {
-    id: 2,
-    name: "Skate or Die",
-    description: "Classic skate slogan with a modern twist. This design pays homage to skating culture while using sustainable materials and practices.",
-    price: 29.99,
-    sizes: ["S", "M", "L", "XL", "XXL"],
-    features: [
-      "100% organic cotton",
-      "Water-based eco-friendly inks",
-      "Print-on-demand to eliminate waste",
-      "Carbon-neutral shipping"
-    ]
-  },
-  // Other products would be here
-];
-
-// Content component that uses the cart context
+// Product content component that uses the cart context
 function ProductContent() {
   // Get params using the useParams hook
   const params = useParams();
   const id = typeof params.id === 'string' ? params.id : Array.isArray(params.id) ? params.id[0] : '1';
   
-  // Find product by ID (in real app, this would fetch from API)
-  const product = products.find((p) => p.id === parseInt(id)) || products[0];
+  // State for product data
+  const [product, setProduct] = useState<Product | null>(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
   
   // State for selected size
   const [selectedSize, setSelectedSize] = useState<string | null>(null);
@@ -56,10 +29,31 @@ function ProductContent() {
   
   // Use cart context
   const { addItem, toggleCart } = useCart();
+
+  // Fetch product data
+  useEffect(() => {
+    async function loadProduct() {
+      try {
+        setLoading(true);
+        const productData = await getProductById(id);
+        setProduct(productData);
+        if (!productData) {
+          setError('Product not found');
+        }
+      } catch (err) {
+        setError('Error loading product');
+        console.error('Error loading product:', err);
+      } finally {
+        setLoading(false);
+      }
+    }
+    
+    loadProduct();
+  }, [id]);
   
   // Handle adding to cart
   const handleAddToCart = () => {
-    if (!selectedSize) return;
+    if (!selectedSize || !product) return;
     
     addItem({
       id: product.id,
@@ -75,19 +69,63 @@ function ProductContent() {
     }, 2000);
   };
 
+  // Show loading state
+  if (loading) {
+    return (
+      <div className="container mx-auto px-4 py-8 md:py-16 text-center">
+        <p className="text-lg">Loading product...</p>
+      </div>
+    );
+  }
+
+  // Show error state
+  if (error || !product) {
+    return (
+      <div className="container mx-auto px-4 py-8 md:py-16 text-center">
+        <p className="text-lg text-primary">{error || 'Product not found'}</p>
+        <Button variant="outline" className="mt-4" asChild>
+          <Link href="/products">
+            ← Back to All Designs
+          </Link>
+        </Button>
+      </div>
+    );
+  }
+
+  // Create features list from sustainability info
+  const features = [
+    product.sustainabilityInfo.materials,
+    ...(product.sustainabilityInfo.certifications || []).map(cert => `${cert} certified`),
+    "Print-on-demand to eliminate waste",
+    product.sustainabilityInfo.carbonFootprint || "Carbon-neutral shipping"
+  ];
+
   return (
     <div className="container mx-auto px-4 py-8 md:py-16">
       <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
         {/* Product Image */}
-        <div className="aspect-square bg-card rounded-lg flex items-center justify-center">
-          <p className="font-punk text-2xl text-primary">{product.name}</p>
+        <div className="aspect-square relative bg-card rounded-lg overflow-hidden">
+          {product.imageUrl ? (
+            <Image
+              src={product.imageUrl}
+              alt={product.name}
+              fill
+              sizes="(max-width: 768px) 100vw, 50vw"
+              className="object-cover"
+              priority
+            />
+          ) : (
+            <div className="flex items-center justify-center h-full">
+              <p className="font-punk text-2xl text-primary">{product.name}</p>
+            </div>
+          )}
         </div>
 
         {/* Product Details */}
         <div className="space-y-6">
           <div>
             <h1 className="font-punk text-3xl">{product.name}</h1>
-            <p className="text-2xl font-bold mt-2">${product.price}</p>
+            <p className="text-2xl font-bold mt-2">${product.price.toFixed(2)}</p>
           </div>
 
           <p className="text-muted-foreground">{product.description}</p>
@@ -140,7 +178,7 @@ function ProductContent() {
           <div>
             <h2 className="font-punk text-lg mb-3">Features</h2>
             <ul className="list-disc pl-5 space-y-2 text-muted-foreground">
-              {product.features.map((feature, index) => (
+              {features.filter(Boolean).map((feature, index) => (
                 <li key={index}>{feature}</li>
               ))}
             </ul>

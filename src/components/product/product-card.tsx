@@ -7,7 +7,7 @@ import Image from 'next/image';
 import { Button } from '@/components/ui/button';
 
 interface ProductCardProps {
-  id: number;
+  id: string | number;
   name: string;
   description: string;
   price: number;
