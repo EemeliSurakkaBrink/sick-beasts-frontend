@@ -6,7 +6,9 @@
     "dev": "next dev --turbopack",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "seed": "ts-node --project src/scripts/seeders/tsconfig.json src/scripts/seeders/index.ts",
+    "seed:products": "ts-node --project src/scripts/seeders/tsconfig.json src/scripts/seeders/index.ts --only products"
   },
   "dependencies": {
     "@next/font": "^14.2.15",
@@ -15,6 +17,7 @@
     "@sanity/image-url": "^1.1.0",
     "@sanity/vision": "^3.80.1",
     "@shadcn/ui": "^0.0.4",
+    "@types/slug": "^5.0.9",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "lucide-react": "^0.483.0",
@@ -24,20 +27,24 @@
     "react-dom": "^19.0.0",
     "react-is": "^19.0.0",
     "sanity": "^3.80.1",
+    "slug": "^10.0.0",
     "styled-components": "^6.1.16",
     "swiper": "^10.3.1",
     "tailwind-merge": "^3.0.2"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",
+    "@types/dotenv": "^6.1.1",
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
     "autoprefixer": "^10.4.14",
+    "dotenv": "^16.4.7",
     "eslint": "^9",
     "eslint-config-next": "15.2.3",
     "postcss": "^8.4.24",
     "tailwindcss": "^3.3.2",
+    "ts-node": "^10.9.2",
     "typescript": "^5"
   }
 }

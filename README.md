@@ -34,3 +34,34 @@ You can check out [the Next.js GitHub repository](https://github.com/vercel/next
 The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+
+## Data Seeding
+
+This project includes a data seeding system that populates the Sanity CMS with initial data. Before running the seeders, you need to set up a Sanity API token with write permissions.
+
+### Setup
+
+1. Go to [https://www.sanity.io/manage](https://www.sanity.io/manage)
+2. Select your project
+3. Navigate to "API" tab
+4. Click "Add API token"
+5. Name it something like "Data Seeders"
+6. Set token permissions to "Editor" (needs write access)
+7. Add the token to your `.env.local` file:
+   ```
+   SANITY_API_TOKEN="your-token-here"
+   ```
+
+### Running Seeders
+
+To run all seeders:
+```bash
+npm run seed
+```
+
+To seed only products:
+```bash
+npm run seed:products
+```
+
+For more details, see [the seeder documentation](src/scripts/seeders/README.md).
