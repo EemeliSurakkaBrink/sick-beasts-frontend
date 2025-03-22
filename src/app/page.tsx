@@ -2,6 +2,7 @@
  * Homepage with hero section, featured products, and benefits
  */
 import Link from "next/link";
+import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import MainLayout from "@/components/layout/main-layout";
 import ProductCarousel from "@/components/carousel/product-carousel";
@@ -31,9 +32,15 @@ export default function HomePage() {
               </div>
             </div>
             <div className="relative aspect-square">
-              {/* Placeholder for hero image */}
-              <div className="w-full h-full rounded-lg bg-gradient-to-br from-primary via-accent to-secondary flex items-center justify-center">
-                <p className="font-punk text-2xl text-foreground">Hero Image Placeholder</p>
+              {/* Hero image */}
+              <div className="w-full h-full rounded-lg overflow-hidden relative">
+                <Image 
+                  src="/images/dummy-shirts/shirt-1.jpg" 
+                  alt="Sick Beasts T-Shirt" 
+                  fill 
+                  priority
+                  className="object-cover"
+                />
               </div>
             </div>
           </div>
@@ -62,9 +69,14 @@ export default function HomePage() {
         <div className="container mx-auto px-4">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
             <div className="relative aspect-square">
-              {/* Placeholder for sustainability image */}
-              <div className="w-full h-full rounded-lg bg-gradient-to-br from-secondary to-accent flex items-center justify-center">
-                <p className="font-punk text-2xl text-foreground">Eco Image Placeholder</p>
+              {/* Sustainability image */}
+              <div className="w-full h-full rounded-lg overflow-hidden relative">
+                <Image 
+                  src="/images/dummy-shirts/shirt-3.jpg" 
+                  alt="Eco-friendly T-Shirt" 
+                  fill 
+                  className="object-cover"
+                />
               </div>
             </div>
             <div className="space-y-6">

@@ -13,32 +13,50 @@ import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 
-// Mock product data
+// Mock product data with image paths
 const featuredProducts = [
   {
     id: 1,
     name: "Toxic Waste",
     description: "Dark humor meets environmental awareness.",
     price: 29.99,
+    image: "/images/dummy-shirts/shirt-1.jpg"
   },
   {
     id: 2,
     name: "Skate or Die",
     description: "Classic skate slogan with a modern twist.",
     price: 29.99,
+    image: "/images/dummy-shirts/shirt-2.jpg"
   },
   {
     id: 3,
     name: "Recycle Your Politicians",
     description: "A satirical take on political waste.",
     price: 32.99,
+    image: "/images/dummy-shirts/shirt-3.jpg"
   },
   {
     id: 4,
     name: "404: Planet Not Found",
     description: "Tech humor with an environmental message.",
     price: 29.99,
+    image: "/images/dummy-shirts/shirt-4.jpg"
   },
+  {
+    id: 5,
+    name: "Apocalypse Ready",
+    description: "Prepare for the worst, look your best.",
+    price: 31.99,
+    image: "/images/dummy-shirts/shirt-5.jpg"
+  },
+  {
+    id: 6,
+    name: "Digital Rebellion",
+    description: "Stand out with this tech-inspired design.",
+    price: 29.99,
+    image: "/images/dummy-shirts/shirt-6.jpg"
+  }
 ];
 
 export default function ProductCarousel() {
@@ -68,6 +86,7 @@ export default function ProductCarousel() {
               name={product.name}
               description={product.description}
               price={product.price}
+              image={product.image}
             />
           </SwiperSlide>
         ))}

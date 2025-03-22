@@ -3,6 +3,7 @@
  */
 import React from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { Button } from '@/components/ui/button';
 
 interface ProductCardProps {
@@ -10,17 +11,22 @@ interface ProductCardProps {
   name: string;
   description: string;
   price: number;
+  image: string;
   className?: string;
 }
 
-export default function ProductCard({ id, name, description, price, className = '' }: ProductCardProps) {
+export default function ProductCard({ id, name, description, price, image, className = '' }: ProductCardProps) {
   return (
     <div className={`group bg-card rounded-lg overflow-hidden border border-border ${className}`}>
       <div className="aspect-square relative bg-muted">
-        {/* Product image placeholder - would be replaced with actual image */}
-        <div className="absolute inset-0 flex items-center justify-center">
-          <p className="font-punk text-xl text-primary">{name}</p>
-        </div>
+        {/* Product image */}
+        <Image 
+          src={image} 
+          alt={name} 
+          fill 
+          sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+          className="object-cover transition-transform duration-300 group-hover:scale-105"
+        />
         
         {/* Quick shop overlay */}
         <div className="absolute inset-0 bg-background/70 opacity-0 group-hover:opacity-100 flex items-center justify-center transition-opacity duration-300">
