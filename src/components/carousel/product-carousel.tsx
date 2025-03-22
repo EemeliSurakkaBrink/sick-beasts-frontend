@@ -3,63 +3,67 @@
  */
 "use client";
 
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation, Pagination, Autoplay } from 'swiper/modules';
 import ProductCard from '@/components/product/product-card';
+import { Product, getProducts } from '@/sanity/lib/api';
 
 // Import Swiper styles
 import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 
-// Mock product data with image paths
-const featuredProducts = [
-  {
-    id: 1,
-    name: "Toxic Waste",
-    description: "Dark humor meets environmental awareness.",
-    price: 29.99,
-    image: "/images/dummy-shirts/shirt-1.jpg"
-  },
-  {
-    id: 2,
-    name: "Skate or Die",
-    description: "Classic skate slogan with a modern twist.",
-    price: 29.99,
-    image: "/images/dummy-shirts/shirt-2.jpg"
-  },
-  {
-    id: 3,
-    name: "Recycle Your Politicians",
-    description: "A satirical take on political waste.",
-    price: 32.99,
-    image: "/images/dummy-shirts/shirt-3.jpg"
-  },
-  {
-    id: 4,
-    name: "404: Planet Not Found",
-    description: "Tech humor with an environmental message.",
-    price: 29.99,
-    image: "/images/dummy-shirts/shirt-4.jpg"
-  },
-  {
-    id: 5,
-    name: "Apocalypse Ready",
-    description: "Prepare for the worst, look your best.",
-    price: 31.99,
-    image: "/images/dummy-shirts/shirt-5.jpg"
-  },
-  {
-    id: 6,
-    name: "Digital Rebellion",
-    description: "Stand out with this tech-inspired design.",
-    price: 29.99,
-    image: "/images/dummy-shirts/shirt-6.jpg"
-  }
-];
-
 export default function ProductCarousel() {
+  const [featuredProducts, setFeaturedProducts] = useState<Product[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+
+  useEffect(() => {
+    async function loadFeaturedProducts() {
+      try {
+        setLoading(true);
+        // Fetch only featured products
+        const products = await getProducts({ featured: true });
+        setFeaturedProducts(products);
+      } catch (err) {
+        console.error('Error loading featured products:', err);
+        setError('Failed to load featured products');
+      } finally {
+        setLoading(false);
+      }
+    }
+
+    loadFeaturedProducts();
+  }, []);
+
+  // Show loading state
+  if (loading) {
+    return (
+      <div className="h-80 flex items-center justify-center">
+        <p className="text-muted-foreground">Loading featured products...</p>
+      </div>
+    );
+  }
+
+  // Show error state
+  if (error) {
+    return (
+      <div className="h-80 flex items-center justify-center">
+        <p className="text-muted-foreground">{error}</p>
+      </div>
+    );
+  }
+
+  // If no featured products are available
+  if (featuredProducts.length === 0) {
+    return (
+      <div className="h-80 flex items-center justify-center">
+        <p className="text-muted-foreground">No featured products available at the moment.</p>
+      </div>
+    );
+  }
+
   return (
     <div className="relative">
       <Swiper
@@ -84,9 +88,9 @@ export default function ProductCarousel() {
             <ProductCard 
               id={product.id}
               name={product.name}
-              description={product.description}
+              description={product.shortDescription}
               price={product.price}
-              image={product.image}
+              image={product.imageUrl}
             />
           </SwiperSlide>
         ))}

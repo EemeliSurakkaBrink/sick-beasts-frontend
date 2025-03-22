@@ -32,7 +32,7 @@ const products: ProductSeedData[] = [
     price: 29.99,
     sizes: ['XS', 'S', 'M', 'L', 'XL'],
     inStock: true,
-    featured: false,
+    featured: true,
     sustainabilityInfo: {
       materials: '100% Organic Cotton',
       certifications: ['GOTS'],
@@ -62,7 +62,7 @@ const products: ProductSeedData[] = [
     price: 29.99,
     sizes: ['S', 'M', 'L', 'XL', 'XXL'],
     inStock: true,
-    featured: false,
+    featured: true,
     sustainabilityInfo: {
       materials: '100% Organic Cotton',
       certifications: ['GOTS'],

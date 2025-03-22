@@ -8,7 +8,8 @@
     "start": "next start",
     "lint": "next lint",
     "seed": "ts-node --project src/scripts/seeders/tsconfig.json src/scripts/seeders/index.ts",
-    "seed:products": "ts-node --project src/scripts/seeders/tsconfig.json src/scripts/seeders/index.ts --only products"
+    "seed:products": "ts-node --project src/scripts/seeders/tsconfig.json src/scripts/seeders/index.ts --only products",
+    "update:products": "ts-node --project src/scripts/seeders/tsconfig.json src/scripts/seeders/updateProducts.ts"
   },
   "dependencies": {
     "@next/font": "^14.2.15",
