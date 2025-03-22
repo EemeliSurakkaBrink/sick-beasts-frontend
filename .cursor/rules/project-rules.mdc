@@ -25,7 +25,7 @@ alwaysApply: true
 *   **Versioned Structure:**
 
     *   `app/api`: Next.js 15 API routes with Route Handlers for backend functionalities like payment gateways and Gelato API integrations.
-    *   `app/dashboard`: Next.js 15 directory for admin components (the CMS and admin interface strictly managed through Laravel and filament remain separate).
+    *   `app/dashboard`: Next.js 15 directory for admin components (the CMS and admin interface strictly managed through Sanity CMS remain separate).
     *   `app/auth`: Route for account system pages such as login and registration.
     *   `app/home`: Contains key pages like the carousel UI for product showcases and customer reviews.
 
@@ -35,7 +35,7 @@ alwaysApply: true
 
     *   `app/home/page.tsx`: Implements the homepage with the Swiper.js carousel UI displaying latest t-shirt designs and customer reviews.
     *   `app/auth/login/page.tsx`: Implements the login page using server actions and secure authentication flows.
-    *   `app/dashboard/layout.tsx`: Acts as the root layout for the t-shirt admin interface where Laravel and filament manage product, orders, and customer data (via API integrations).
+    *   `app/dashboard/layout.tsx`: Acts as the root layout for the t-shirt admin interface where Sanity CMS manages product, orders, and customer data (via API integrations).
 
 ## Tech Stack Rules
 
@@ -44,13 +44,13 @@ alwaysApply: true
     *   `next@15`: Enforce the App Router pattern in an `app/` directory with nested route folders; ensure usage of React Server Components where applicable.
     *   `tailwindcss@latest`: Use Tailwind for styling components, ensuring responsiveness and a dark, high-contrast theme.
     *   `swiper.js@latest`: Implement Swiper.js for interactive carousel UIs with smooth transitions and mobile optimizations.
-    *   `laravel@latest & filament.php`: Strictly manage CMS and admin operations, ensuring secure data handling, especially for payment and customer management.
+    *   `sanity@latest`: Strictly manage CMS and admin operations, ensuring secure data handling, especially for payment and customer management.
 
 ## PRD Compliance
 
 *   **Non-Negotiable:**
 
-    *   "The CMS and admin interface will be strictly managed through Laravel and filament; custom feature requests outside those frameworks are out-of-scope for this version." : This enforces that all admin features, product management, order handling, and marketing integrations should align with Laravel and filament constraints.
+    *   "The CMS and admin interface will be strictly managed through Sanity CMS; custom feature requests outside those frameworks are out-of-scope for this version." : This enforces that all admin features, product management, order handling, and marketing integrations should align with Sanity CMS constraints.
 
 ## App Flow Integration
 
@@ -67,11 +67,11 @@ alwaysApply: true
     *   Enforce code-splitting and lazy loading for enhanced user experience.
     *   Ensure SEO best practices with proper metadata and dynamic routing.
 
-*   Laravel
+*   Sanity CMS
 
-    *   Adhere to MVC architecture for clean separation of concerns.
+    *   Adhere to Sanity's structure for clean separation of content and presentation concerns.
     *   Ensure secure API endpoints and proper validation for admin functionalities.
-    *   Use Laravel’s built-in features for authentication and authorization.
+    *   Use Sanity's built-in features for content management and scalable data handling.
 
 *   Tailwind CSS
 
@@ -91,16 +91,12 @@ alwaysApply: true
     *   Customize components to align with the overall dark aesthetic.
     *   Modularize UI components to enhance reusability and scalability.
 
-*   Filament (Laravel CMS)
-
-    *   Use Filament’s built-in admin panels to maintain consistent UI and functionality.
-    *   Regularly update and secure plugins to prevent vulnerabilities.
-    *   Integrate with Laravel’s validation and middleware features for robust admin operations.
-
 ## Rules
 
 *   Derive folder/file patterns **directly** from the tech stack versions provided, ensuring Next.js 15 uses the App Router (`app/` directory) exclusively.
 *   If Next.js 15 App Router is used: Enforce the `app/` directory with nested route folders and do not use `pages/`.
-*   For backend/admin interfaces, mirror Laravel and filament conventions, strictly separating admin routes and frontend logic.
+*   For backend/admin interfaces, mirror Sanity CMS conventions, strictly separating admin routes and frontend logic.
 *   Ensure that shipping/returns policies (14-day cooling-off period) and scalability considerations are reflected in both frontend user interactions and backend processing.
-*   Maintain clear separation of concerns between frontend (Next.js) and backend (Laravel) systems to avoid mixing incompatible version patterns.
+*   Maintain clear separation of concerns between frontend (Next.js) and backend (Sanity CMS) systems to avoid mixing incompatible version patterns.
+
+By adhering to these guidelines, the project will effectively utilize the tech stack to create a seamless and scalable e-commerce platform for the skate clothing brand.

@@ -4,12 +4,12 @@ This document explains in everyday language how our backend is built, hosted, an
 
 ## 1. Backend Architecture
 
-Our backend runs on a robust and scalable architecture built primarily on Laravel, a PHP framework known for its elegant syntax and powerful features. Key points include:
+Our backend runs on a robust and scalable architecture built on Sanity CMS, a modern headless content management system. Key points include:
 
-*   **Framework & Design Patterns:**
+*   **CMS and Design Patterns:**
 
-    *   Laravel’s MVC (Model-View-Controller) architecture keeps business logic, user interface, and data handling separate for clarity and maintenance.
-    *   We use filament.php as an admin interface for easy and secure management of products, orders, and customer data.
+    *   Sanity CMS provides a flexible and real-time collaborative editing experience that allows us to manage content with efficiency.
+    *   Sanity's structured content approach ensures dynamic data manipulation and multi-channel delivery.
 
 *   **Scalability:**
 
@@ -17,89 +17,63 @@ Our backend runs on a robust and scalable architecture built primarily on Larave
 
 *   **Maintainability & Performance:**
 
-    *   Clean, well-organized code, adherence to coding standards, and built-in tools from Laravel ensure that improvements and troubleshooting are straightforward.
+    *   Clear data structures and Sanity's GROQ query language contribute to straightforward improvements and troubleshooting.
 
 ## 2. Database Management
 
-Our system uses modern database solutions to securely store and manage the data needed for orders, customers, products, and beyond. We rely on a relational database approach to ensure data integrity and easy retrieval:
+Our system integrates with Sanity's back-end capabilities to securely store and manage the data needed for orders, customers, products, and beyond. We utilize a structured content approach to ensure data integrity and easy retrieval:
 
 *   **Database Technology:**
 
-    *   **SQL Database:** We use a SQL-based system, which complements Laravel’s Eloquent ORM, making database interactions both intuitive and efficient.
+    *   **Sanity Datastore:** Sanity manages content in a schema-driven manner that fits well with our scalability and data consistency requirements.
 
 *   **Data Structure and Access:**
 
-    *   Data is organized in tables representing key entities like users, orders, products, and newsletters.
-    *   Relationships between these tables (for instance, a customer placing multiple orders) are clearly defined.
+    *   Content is organized in documents representing key entities like users, orders, products, and newsletters.
+    *   Relationships between these documents (for instance, a customer placing multiple orders) are clearly handled using relational links in Sanity.
 
 *   **Best Practices:**
 
-    *   Secure queries, regular backups, and well-indexed tables to ensure the system performs quickly even when scaled up.
+    *   Secure API queries, regular content backups, and optimized indexing for performance at scale.
 
 ## 3. Database Schema
 
-Below is a human-readable description of the main database schema along with SQL examples for clarity.
+Below is a human-readable description of the main content schema within Sanity along with structured examples for clarity.
 
 ### Human Readable Schema Layout:
 
-*   **Users Table:**
+*   **Users Document:**
 
-    *   Stores customer information such as name, email, address, and login credentials.
+    *   Stores customer information such as name, email, address, and login identifiers.
 
-*   **Orders Table:**
+*   **Orders Document:**
 
     *   Records information about each order placed, linking it to a user, and contains details like order status, totals, and timestamps.
 
-*   **Products Table:**
+*   **Products Document:**
 
     *   Contains details about the t-shirts, including design, pricing, and sustainability attributes.
 
-*   **Inventory Table:**
+*   **Inventory Document:**
 
-    *   Keeps track of product stock and syncs with the print-on-demand service (Gelato).
+    *   Synced with the print-on-demand service (Gelato) to manage product stock.
 
-*   **Newsletters Table:**
+*   **Newsletters Document:**
 
     *   Manages email subscribers and campaign details for our marketing emails.
 
-*   **Transactions Table:**
+*   **Transactions Document:**
 
-    *   Holds payment information related to credit card and Paypal transactions, ensuring financial data is recorded securely.
-
-### SQL Schema Example (PostgreSQL):
-
--- Users Table
-
-CREATE TABLE users ( id SERIAL PRIMARY KEY, name VARCHAR(255) NOT NULL, email VARCHAR(255) UNIQUE NOT NULL, password VARCHAR(255) NOT NULL, address TEXT, created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP, updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP );
-
--- Orders Table
-
-CREATE TABLE orders ( id SERIAL PRIMARY KEY, user_id INTEGER REFERENCES users(id), status VARCHAR(50) NOT NULL, total_amount DECIMAL(10,2) NOT NULL, created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP, updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP );
-
--- Products Table
-
-CREATE TABLE products ( id SERIAL PRIMARY KEY, name VARCHAR(255) NOT NULL, description TEXT, price DECIMAL(10,2) NOT NULL, stock INTEGER DEFAULT 0, created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP, updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP );
-
--- Inventory Table
-
-CREATE TABLE inventory ( id SERIAL PRIMARY KEY, product_id INTEGER REFERENCES products(id), quantity INTEGER NOT NULL, last_synced TIMESTAMP );
-
--- Newsletters Table
-
-CREATE TABLE newsletters ( id SERIAL PRIMARY KEY, email VARCHAR(255) UNIQUE NOT NULL, subscribed BOOLEAN DEFAULT TRUE, subscribe_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP );
-
--- Transactions Table
-
-CREATE TABLE transactions ( id SERIAL PRIMARY KEY, order_id INTEGER REFERENCES orders(id), payment_method VARCHAR(50) NOT NULL, -- E.g., 'Credit Card', 'PayPal' transaction_status VARCHAR(50), amount DECIMAL(10,2) NOT NULL, processed_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP );
+    *   Holds payment information related to credit card and PayPal transactions, ensuring financial data is recorded securely.
 
 ## 4. API Design and Endpoints
 
-Our backend uses RESTful APIs to allow seamless communication between the frontend and the backend services. Here’s an overview of the API design:
+Our backend uses RESTful APIs available through Sanity to allow seamless communication between the frontend and the backend services. Here’s an overview of the API design:
 
 *   **Design Approach:**
 
-    *   Using REST principles for clarity and simplicity. Each endpoint has a clear purpose and predictable responses.
-    *   The endpoints support CRUD operations (Create, Read, Update, Delete) for handling orders, user profiles, newsletter subscriptions, and more.
+    *   Utilizing REST principles for clarity and simplicity, with endpoints that possess clear purposes and predictable responses.
+    *   Endpoints support CRUD operations for handling orders, user profiles, newsletter subscriptions, and more.
 
 *   **Key Endpoints Include:**
 
@@ -135,11 +109,11 @@ The backend is hosted on a reliable cloud platform that ensures high uptime and 
 
 *   **Cloud Provider:**
 
-    *   We use a cloud service (e.g., AWS, DigitalOcean, or similar) that supports PHP applications and offers managed databases, load balancers, and more.
+    *   We use a cloud service (e.g., AWS, DigitalOcean, or similar) that supports deployments with Sanity and offers managed databases, load balancers, and more.
 
 *   **Benefits:**
 
-    *   **Reliability:** High uptime and resilience, meaning our store is available when customers need it.
+    *   **Reliability:** High uptime and resilience, ensuring our store is available when customers need it.
     *   **Scalability:** Resources can be scaled up automatically based on demand.
     *   **Cost-effectiveness:** Pay for what you use while still having access to enterprise-grade features and security.
 
@@ -170,16 +144,16 @@ Security is paramount in our backend infrastructure. Here’s how we protect our
 
 *   **Authentication & Authorization:**
 
-    *   Secure login systems using Laravel’s built-in authentication mechanisms.
+    *   Secure login systems utilizing Sanity's security protocols.
     *   User roles and permissions ensure that admins and regular users have appropriate access.
 
 *   **Data Encryption:**
 
-    *   Data is encrypted both in transit (using HTTPS) and at rest, securing sensitive information like payment details and passwords.
+    *   Data is encrypted both in transit and at rest, securing sensitive information like payment details and passwords.
 
 *   **Additional Security Practices:**
 
-    *   Cross-Site Request Forgery (CSRF) protection for forms and endpoints.
+    *   Cross-Site Request Forgery (CSRF) protection for content management and endpoints.
     *   Regular security audits and updates to dependencies to keep vulnerabilities at bay.
 
 ## 8. Monitoring and Maintenance
@@ -200,9 +174,9 @@ Keeping our backend running smoothly requires constant monitoring and regular ma
 
 Our backend structure is carefully designed to meet the needs of a modern, scalable e-commerce store. Key takeaways include:
 
-*   **Scalable & Secure Architecture:** Using Laravel and filament.php to ensure efficient management and ease of scaling.
-*   **Well-Defined Database System:** Structured using a SQL database that supports robust data handling and future expansion.
-*   **RESTful APIs for Communication:** Clear endpoints that allow the frontend to interact seamlessly with the backend services.
+*   **Scalable & Secure Architecture:** Using Sanity CMS to ensure efficient content management and ease of scaling.
+*   **Well-Defined Content Schema:** Structured using Sanity's schema to support robust data handling and future expansion.
+*   **RESTful APIs for Communication:** Clear endpoints that allow the frontend to interact seamlessly with backend services.
 *   **Cloud-Based, High-Performance Hosting:** Proven solutions such as load balancers, CDNs, and auto-scaling ensure reliability and speed.
 *   **Strong Security & Ongoing Monitoring:** Comprehensive security measures and vigilant monitoring protect user data and maintain high performance.
 

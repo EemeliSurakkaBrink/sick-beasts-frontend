@@ -32,19 +32,14 @@ This combination makes the frontend interactive and visually appealing, ensuring
 
 The backend takes care of data operations, server-side logic, and overall business functionality. It works behind the scenes to ensure that everything functions as expected:
 
-*   **Laravel**
+*   **Sanity CMS**
 
-    *   A robust PHP framework used to build the application’s core, ensuring reliability and scalability.
-    *   Handles the logic for managing products, orders, and user data, as well as connecting to third-party services.
-
-*   **filament.php**
-
-    *   A tool integrated with Laravel, designed to create a powerful administrative interface.
-    *   Simplifies back-end management for products, orders, and customer data, making it easier for the store owners.
+    *   A flexible and customizable platform for managing web content.
+    *   Manages content updates, product information, and allows for a streamlined editorial workflow.
 
 *   **CMS Integration**
 
-    *   The use of Laravel combined with filament creates a CMS (Content Management System) that streamlines content updates and order management.
+    *   Sanity CMS provides comprehensive tools for managing content and product information effectively.
 
 Together, these tools build a strong foundation that supports all front-end functionalities while ensuring smooth data management and business operations.
 
@@ -87,7 +82,7 @@ To extend the functionality without reinventing the wheel, several third-party i
 
 *   **Email Marketing**
 
-    *   Built using Laravel, the system sends confirmation and marketing emails to users and newsletter subscribers.
+    *   Built using custom integrations, the system sends confirmation and marketing emails to users and newsletter subscribers.
 
 These integrations help enhance the store’s efficiency and ensure that it meets modern e-commerce standards.
 
@@ -98,13 +93,13 @@ Keeping our users' data secure and the website performing well is a top priority
 *   **Security Measures**
 
     *   **Authentication:** Implementing secure login mechanisms, allowing both guest checkouts and account-based orders with order tracking.
-    *   **Data Protection:** Utilizing Laravel's built-in security features to safeguard customer data and transactions.
+    *   **Data Protection:** Utilizing Sanity CMS's robust security features to safeguard customer data and transactions.
 
 *   **Performance Optimizations**
 
     *   **Fast Page Loads:** Next.js and Tailwind CSS contribute to quick rendering times and a smooth user interface.
     *   **Responsive Design:** Ensuring that all features, especially the Swiper.js-powered carousel, work seamlessly on any device.
-    *   **Efficient Data Handling:** The use of Laravel ensures that data operations are both secure and efficient.
+    *   **Efficient Data Handling:** The use of Sanity CMS ensures that data operations are both secure and efficient.
 
 By focusing on these measures, we ensure a secure, robust, and high-performance website that delivers a top-notch user experience.
 
@@ -113,7 +108,7 @@ By focusing on these measures, we ensure a secure, robust, and high-performance 
 In summary, here’s how each technology serves the project:
 
 *   **Frontend (Next.js 15, Tailwind CSS, shadcn, Swiper.js):** Provides a vibrant, interactive, and visually captivating shopping experience aligned with the brand's dark humor and eco-friendly message.
-*   **Backend (Laravel and filament.php):** Establishes a secure and scalable framework for managing products, orders, and customer interactions behind the scenes.
+*   **Backend (Sanity CMS):** Establishes a secure and scalable framework for managing products, orders, and customer interactions behind the scenes.
 *   **Infrastructure and Deployment (Cloud Hosting, Git, CI/CD Pipelines):** Guarantees that the application is reliable, easy to update, and ready for future growth.
 *   **Third-Party Integrations (Gelato, Credit Cards, PayPal, Instagram, Email Marketing):** Extends functionality while maintaining a focus on user engagement, secure transactions, and streamlined print-on-demand product fulfillment.
 

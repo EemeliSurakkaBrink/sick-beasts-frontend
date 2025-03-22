@@ -4,7 +4,7 @@
 
 Our project is an e-commerce store built for a skate clothing brand that focuses on sustainable, print-on-demand t-shirts. The store has been designed to appeal to young adults, environmentally conscious people, and skaters who appreciate dark humour and a tongue-in-cheek attitude. The core idea is to offer a visually engaging shopping experience that combines an edgy, high-contrast design with smooth, modern functionalities such as an interactive carousel, easy shopping basket management, secure checkout, and integrated customer reviews.
 
-This project is being built to meet the demand for sustainable fashion while showcasing a unique brand personality. The key objectives include delivering a seamless and intuitive user experience, enabling efficient backend management through Laravel and filament, and integrating essential e-commerce functionalities such as guest and registered user checkouts, secure payments (credit cards and PayPal), marketing via email, and social media integration (including Instagram). Success will be measured by a site that is both robust and flexible enough to scale with additional product categories in the future.
+This project is being built to meet the demand for sustainable fashion while showcasing a unique brand personality. The key objectives include delivering a seamless and intuitive user experience, enabling efficient backend management through Sanity CMS, and integrating essential e-commerce functionalities such as guest and registered user checkouts, secure payments (credit cards and PayPal), marketing via email, and social media integration (including Instagram). Success will be measured by a site that is both robust and flexible enough to scale with additional product categories in the future.
 
 ## 2. In-Scope vs. Out-of-Scope
 
@@ -14,7 +14,7 @@ This project is being built to meet the demand for sustainable fashion while sho
 *   An engaging homepage featuring a cool carousel (built with Swiper.js) showcasing the latest t-shirt designs and customer reviews.
 *   A shopping basket and checkout flow that support both guest orders and registered account checkouts.
 *   Integration of secure payment methods (credit cards and PayPal) and clear display of shipping/return policies (14 calendar day cooling-off period).
-*   An admin interface developed using Laravel and filament for managing products, orders, and customer data.
+*   An admin interface through Sanity CMS for managing products, orders, and customer data.
 *   Integration with the Gelato print-on-demand service for t-shirt production and fulfillment.
 *   A marketing system for sending emails to registered users and newsletter subscribers, and Instagram feed integration.
 *   A user-friendly design using Next.js 15, Tailwind CSS, and shadcn UI elements, maintaining a visually striking, dark, and high-contrast aesthetic with strong accent colours.
@@ -53,7 +53,7 @@ Once a user decides to make a purchase, they add their chosen t-shirt(s) to a sh
 
 *   **Admin Interface:**
 
-    *   Built with Laravel and filament for managing products, orders, and customer data.
+    *   Managed through Sanity CMS for managing products, orders, and customer data.
     *   Enables the backend management of marketing emails and integration with social media.
 
 *   **Marketing & Social Media Integration:**
@@ -77,14 +77,13 @@ Once a user decides to make a purchase, they add their chosen t-shirt(s) to a sh
 
 *   **Backend & CMS:**
 
-    *   Laravel as the primary framework for the backend logic.
-    *   filament.php for CMS functionalities, including the admin interface.
+    *   Sanity CMS for backend logic and content management.
 
 *   **Integrations & Plugins:**
 
     *   Gelato for print-on-demand production and fulfillment.
     *   Payment gateway integrations for credit cards and PayPal.
-    *   Instagram and email marketing integrations via custom Laravel systems.
+    *   Instagram and email marketing integrations via Sanity CMS features.
 
 *   **AI & Developer Tools:**
 
@@ -120,17 +119,17 @@ Once a user decides to make a purchase, they add their chosen t-shirt(s) to a sh
 *   The project relies on the availability and stability of the Gelato print-on-demand service.
 *   It is assumed that the necessary APIs (for payment gateways and Instagram) are accessible and can handle the expected load.
 *   The site will initially launch with only t-shirts, though it should be architected to allow easy addition of new product categories.
-*   The CMS and admin interface will be strictly managed through Laravel and filament; custom feature requests outside those frameworks are out-of-scope for this version.
-*   It is assumed that the target hosting environment can support Next.js 15 and Laravel simultaneously with reasonable performance.
+*   The CMS and admin interface will be strictly managed through Sanity CMS; custom feature requests outside those frameworks are out-of-scope for this version.
+*   It is assumed that the target hosting environment can support Next.js 15 and Sanity CMS simultaneously with reasonable performance.
 *   Developers will primarily use provided tools (Cursor and Claude 3.7 Sonnet) for rapid and effective iterating on the project requirements.
 
 ## 8. Known Issues & Potential Pitfalls
 
-*   Integrating multiple technologies (Laravel, Next.js, Tailwind, Swiper.js) requires careful coordination. Ensure that components communicate effectively across the backend and frontend.
+*   Integrating multiple technologies (CMS, Next.js, Tailwind, Swiper.js) requires careful coordination. Ensure that components communicate effectively across the backend and frontend.
 *   The Swiper.js carousel, while engaging, may present challenges with responsiveness and performance on older devices; thorough testing across devices is essential.
 *   API rate limits and potential reliability issues with external services (Gelato, Instagram, Payment gateways) could affect the user experience. Incorporate error handling and fallback mechanisms.
 *   Security around payment processing must be stringent; consider regular security audits and compliance checks.
 *   Scalability of the backend to support future product categories might require periodic review of database structure and server performance as traffic grows.
-*   The admin interface must be both intuitive and powerful; usability testing with actual store managers is advised to streamline workflow.
+*   The CMS interface must be both intuitive and powerful; usability testing with actual store managers is advised to streamline workflow.
 
-This document serves as the complete guide for the development of the e-commerce store project. It provides clear instructions and detailed requirements for all subsequent technical documents, ensuring that every aspect of the project is well-defined and unambiguous.
+This document serves as the comprehensive guide for the development of the e-commerce store project. It provides clear instructions and detailed requirements for all subsequent technical documents, ensuring that every aspect of the project is well-defined and unambiguous.
