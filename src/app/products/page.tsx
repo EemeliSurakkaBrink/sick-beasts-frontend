@@ -11,36 +11,42 @@ const products = [
     name: "Toxic Waste",
     description: "Dark humor meets environmental awareness.",
     price: 29.99,
+    image: "/images/dummy-shirts/shirt-1.jpg",
   },
   {
     id: 2,
     name: "Skate or Die",
     description: "Classic skate slogan with a modern twist.",
     price: 29.99,
+    image: "/images/dummy-shirts/shirt-2.jpg",
   },
   {
     id: 3,
     name: "Recycle Your Politicians",
     description: "A satirical take on political waste.",
     price: 32.99,
+    image: "/images/dummy-shirts/shirt-3.jpg",
   },
   {
     id: 4,
     name: "404: Planet Not Found",
     description: "Tech humor with an environmental message.",
     price: 29.99,
+    image: "/images/dummy-shirts/shirt-4.jpg",
   },
   {
     id: 5,
     name: "Apocalypse Skater",
     description: "Ride through the end times in style.",
     price: 29.99,
+    image: "/images/dummy-shirts/shirt-5.jpg",
   },
   {
     id: 6,
     name: "Plastic Is So Last Century",
     description: "Fighting plastic pollution with humor.",
     price: 32.99,
+    image: "/images/dummy-shirts/shirt-6.jpg",
   },
 ];
 
@@ -67,6 +73,7 @@ export default function ProductsPage() {
               name={product.name}
               description={product.description}
               price={product.price}
+              image={product.image}
             />
           ))}
         </div>
