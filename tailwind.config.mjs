@@ -1,5 +1,5 @@
 /** @type {import('tailwindcss').Config} */
-export default {
+const config = {
   darkMode: "class",
   content: [
     "./src/pages/**/*.{js,ts,jsx,tsx,mdx}",
@@ -22,9 +22,11 @@ export default {
       },
       fontFamily: {
         sans: ["var(--font-sans)"],
-        mono: ["var(--font-mono)"],
+        punk: ["var(--font-punk)"],
       },
     },
   },
   plugins: [],
-}; 
+};
+
+export default config; 
